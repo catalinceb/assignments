@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 2 - Website Building</title>
+    <script src="https://kit.fontawesome.com/0e6939a17d.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        #login-container {
+            width: 460px;
+            margin: 0 auto;
+        }
+
+        form label,
+        form input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        form input {
+            padding: 8px;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form div {
+            margin: 16px 0px;
+        }
+
+        .valid-input {
+            border: 2px solid #2edc79;
+        }
+
+        .invalid-input {
+            border: 2px solid #ff1f1f;
+        }
+
+        .input-group span {
+            position: relative;
+            float: right;
+            bottom: 28px;
+            right: 8px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="login-container">
+
+        <form>
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input id="username" type="text">
+                <span id="username-valid-icon"></span>
+                <span id="username-invalid-icon"></span>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input id="password" type="password">
+                <span id="password-valid-icon"></span>
+                <span id="password-invalid-icon"></span>
+            </div>
+
+            <input type="submit" value="Login" id="submit-btn">
+        </form>
+
+    </div>
+
+
+
+    <script>
+
+        var usernameInput = document.getElementById('username');
+        var passwordInput = document.getElementById('password')
+        var submitBtn = document.getElementById('submit-btn');
+        var usernameValid = document.getElementById('username-valid-icon');
+        var passwordValid = document.getElementById('password-valid-icon');
+        var usernameInvalid = document.getElementById('username-invalid-icon');
+        var passwordInvalid = document.getElementById('password-invalid-icon');
+        var referenceNode = document.querySelector('#submit-btn');
+
+        function onClickSubmit(event) {
+            event.preventDefault();
+            var usernameValue = usernameInput.value;
+            var passwordValue = passwordInput.value;
+            console.log(usernameValue);
+            console.log(passwordValue);
+
+            // submitBtn.addEventListener('click', function (event) {
+            //     event.preventDefault();
+            //     var usernameValue = usernameInput.value;
+            //     var passwordValue = passwordInput.value;
+            //     console.log(usernameValue);
+            //     console.log(passwordValue);
+
+
+
+            function validInput() {
+                if (usernameValue === "" && passwordValue === "") {
+                    usernameInput.classList.add('invalid-input');
+                    passwordInput.classList.add('invalid-input');
+                    usernameInvalid.innerHTML = '<i class="fa-solid fa-xmark" style="color: #ff1f1f;"></i>';
+                    passwordInvalid.innerHTML = '<i class="fa-solid fa-xmark" style="color: #ff1f1f;"></i>';
+                    var newNode = document.createElement('p');
+                    var textNode = document.createTextNode('*please, enter username');
+                    newNode.appendChild(textNode);
+                    referenceNode.parentNode.insertBefore(newNode, referenceNode);
+                    var newNode = document.createElement('p');
+                    var textNode = document.createTextNode('*please, enter password');
+                    newNode.appendChild(textNode);
+                    referenceNode.parentNode.insertBefore(newNode, referenceNode);
+                }
+
+
+
+
+                else if (usernameValue === 'new_user' && passwordValue === "123456789") {
+                    usernameInput.classList.add('valid-input');
+                    passwordInput.classList.add('valid-input');
+                    usernameValid.innerHTML = '<i class="fa-sharp fa-solid fa-check" style="color: #2edc79;"></i>';
+                    passwordValid.innerHTML = '<i class="fa-sharp fa-solid fa-check" style="color: #2edc79;"></i>';
+                    var newNode = document.createElement('p');
+                    var textNode = document.createTextNode('Successful login!');
+                    newNode.appendChild(textNode);
+                    referenceNode.parentNode.insertBefore(newNode, referenceNode);
+                }
+                else if (usernameValue !== 'new_user' && passwordValue !== "123456789") {
+                    usernameInput.classList.add('invalid-input');
+                    passwordInput.classList.add('invalid-input');
+                    usernameInvalid.innerHTML = '<i class="fa-solid fa-xmark" style="color: #ff1f1f;"></i>';
+                    passwordInvalid.innerHTML = '<i class="fa-solid fa-xmark" style="color: #ff1f1f;"></i>';
+                    var newNode = document.createElement('p');
+                    var textNode = document.createTextNode('*please, enter a valid username');
+                    newNode.appendChild(textNode);
+                    referenceNode.parentNode.insertBefore(newNode, referenceNode);
+                    var newNode = document.createElement('p');
+                    var textNode = document.createTextNode('*please, enter a valid password');
+                    newNode.appendChild(textNode);
+                    referenceNode.parentNode.insertBefore(newNode, referenceNode);
+                }
+                else if (usernameValue !== 'new_user' && passwordValue === "123456789") {
+                    usernameInput.classList.add('invalid-input');
+                    passwordInput.classList.add('valid-input');
+                    usernameInvalid.innerHTML = '<i class="fa-solid fa-xmark" style="color: #ff1f1f;"></i>';
+                    passwordValid.innerHTML = '<i class="fa-sharp fa-solid fa-check" style="color: #2edc79;"></i>';
+                    var newNode = document.createElement('p');
+                    var textNode = document.createTextNode('*please, enter a valid username');
+                    newNode.appendChild(textNode);
+                    referenceNode.parentNode.insertBefore(newNode, referenceNode);
+                }
+                else if (usernameValue === 'new_user' && passwordValue !== "123456789") {
+                    usernameInput.classList.add('valid-input');
+                    passwordInput.classList.add('invalid-input');
+                    usernameValid.innerHTML = '<i class="fa-sharp fa-solid fa-check" style="color: #2edc79;"></i>';
+                    passwordInvalid.innerHTML = '<i class="fa-solid fa-xmark" style="color: #ff1f1f;"></i>';
+                    var newNode = document.createElement('p');
+                    var textNode = document.createTextNode('*please, enter a valid password');
+                    newNode.appendChild(textNode);
+                    referenceNode.parentNode.insertBefore(newNode, referenceNode);
+                }
+            }
+
+            validInput();
+            submitBtn.removeEventListener('click', onClickSubmit);
+
+        };
+
+        submitBtn.addEventListener('click', onClickSubmit);
+
+
+    </script>
+
+
+
+</body>
+
+</html>
