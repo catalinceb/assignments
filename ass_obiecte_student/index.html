@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obiecte Student</title>
+</head>
+<body>
+    
+<script>
+
+function Student(name, address, phone, course){
+    this.name = name;
+    this.address = address;
+    this.phone = phone;
+    this.course = course;
+
+    this.getInfo = function (){
+    return "Name: " + this.name + "\n" +
+    "Address: " + this.address + "\n" +
+    "Phone: " + this.phone + "\n" +
+    "Course: " + this.course
+};
+
+}
+
+let student1 = new Student("John Smith", "123 Liberty Street, New York", "(123) 456-7890", "Applied Mathematics");
+let student2 = new Student("Emily Johnson", "456 Elm Avenue, Los Angeles", "(987) 654-3210", "Computer Science");
+let student3 =new Student("Sarah Davis", "789 Oak Drive, Chicago", "(555) 123-4567", "Business Administration");
+
+let student1Info = student1.getInfo();
+let student2Info = student2.getInfo();
+let student3Info = student3.getInfo();
+
+console.log(student1Info);
+console.log(student2Info);
+console.log(student3Info);
+
+</script>
+
+</body>
+</html>
